@@ -22,7 +22,9 @@ func Find(slice []int64, val int64) bool {
 	return  false
 }
 
-//Brute force O(n3)
+//Brute force O(mn3)
+// m - Number of unique triplet combinations
+// n - Number of elements in each array, equal sized
 func ThreeNumberSum(array []int, target int) [][]int {
 	sort.Ints(array)
 	arr := [][]int{}
