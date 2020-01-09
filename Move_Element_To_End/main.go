@@ -1,10 +1,5 @@
-package Move_Folder_To_End
-package main
+package Move_Element_To_End
 
-
-import (
-	"fmt"
-)
 
 // https://www.algoexpert.io/questions/Move%20Element%20To%20End
 
