@@ -7,7 +7,9 @@ import (
 
 // https://www.algoexpert.io/questions/Smallest%20Difference
 
-// Brute Force O(n2)
+// Brute Force O(mn)
+// n - len(array1)
+// m - len(array2)
 func SmallestDifference(array1 []int, array2 []int) []int {
 	sort.Ints(array1)
 	sort.Ints(array2)
