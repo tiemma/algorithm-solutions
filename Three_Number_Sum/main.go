@@ -45,7 +45,7 @@ func ThreeNumberSum(array []int, target int) [][]int {
 }
 
 
-//Optimised version O(n2)
+//Optimised version O(nlogn)
 func ThreeNumberSum(array []int, target int) [][]int {
 	// Write your code here.
 	sort.Ints(array)
