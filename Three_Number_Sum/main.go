@@ -47,7 +47,6 @@ func ThreeNumberSum(array []int, target int) [][]int {
 
 //Optimised version O(nlogn)
 func ThreeNumberSum(array []int, target int) [][]int {
-	// Write your code here.
 	sort.Ints(array)
 	triplets := [][]int{}
 	for idx, num := range array {
