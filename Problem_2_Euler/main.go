@@ -26,7 +26,7 @@ func FibonnaciSum() int {
 		currValue += BinetFormula(n)
 		fmt.Println(currValue)
 		// 1 2 3 5 8 13 21 34....
-		// Following the sequence, we see that the index for even numbers occurs at steps from 3 from 1
+		// Following the sequence, we see that the index for even numbers occurs at steps of 3
 		// 1 4 7 ....
 		// So no need to bother with the other sequences, just increment the index by 3 and move to the next even one
 		n += 3
