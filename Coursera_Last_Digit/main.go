@@ -28,5 +28,5 @@ func LastDigit(n float64) int64 {
 
 
 func main(){
-	fmt.Println(LastDigit(60))
+	fmt.Println(LastDigit(832564823476))
 }
