@@ -15,16 +15,18 @@ func BinetFormula(n float64) int64 {
 
 func LastDigit(n float64) int64 {
 	var seqMax int64 = 60
+	var count int64 = 0
+
 	fibSequence := make([]int64, seqMax)
-	var count int64 = 1
-	for count <= seqMax {
-		fibSequence = append(fibSequence, BinetFormula(float64(count))  % 10)
+	for count < seqMax {
+		fibSequence[count] = BinetFormula(float64(count)) % 10
 		count += 1
 	}
-	return fibSequence[int(64) % 60]
+
+	return fibSequence[int(n) % 60]
 }
 
 
 func main(){
-	fmt.Println(LastDigit(832564823476))
+	fmt.Println(LastDigit(60))
 }
