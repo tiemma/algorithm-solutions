@@ -16,3 +16,11 @@ class Solution(object):
             temp = [x[1] for x in zip(val, nums) if x[0] == '1']
             arr.append(temp)
         return arr
+
+
+
+
+    [1, 2, 3, 4, 5]
+
+
+    1 - 0 0 0 0 1

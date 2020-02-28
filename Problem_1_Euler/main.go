@@ -15,7 +15,7 @@ func calcArithmeticSum(a int, n int) int {
 	return ans
 }
 
-// O(1) space and time
+// O(1) space and O(1) time
 func MultiplesOf3And5(num int) int {
 	divBy3 := (num - 1) / 3
 	divBy5 := (num - 1) / 5
