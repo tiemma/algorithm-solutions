@@ -9,7 +9,7 @@ func BinetFormula(n float64) int64 {
 	sqrt5 := math.Sqrt(5)
 	phi := (1 + sqrt5) / 2
 	ans := math.Round(math.Pow(phi, n) / sqrt5)
-	//fmt.Printf("Value at n: %f in fibonnaci sequence is: %f\n", n, ans)
+	fmt.Printf("Value at n: %f in fibonnaci sequence is: %f\n", n, ans)
 	return int64(ans)
 }
 
@@ -20,7 +20,10 @@ func LastDigit(n float64) int64 {
 
 	fibSequence := make([]int64, seqMax)
 	for count < seqMax {
-		fibSequence[count] = BinetFormula(float64(count)) % 10
+		if count == 0{
+			fibSequence[count] = 0
+		}
+		fibSequence[count] = (fibSequence[count] + BinetFormula(float64(count))) % 10
 		count += 1
 	}
 
