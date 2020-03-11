@@ -11,7 +11,7 @@ import (
 // We can offset unncessary computation by setting the prime check startpoint
 // using the prime count function
 // https://mathworld.wolfram.com/PrimeNumberTheorem.html
-// For simplicity, the table listed in the @findStartingPowerIndex function is used to approximate the occurrence
+// For simplicity, the table listed in the @findPrimeAtIndex function is used to approximate the occurrence
 // Additional study on implementing the code to generate the table is for the viewers discretion to do so
 
 
@@ -48,14 +48,14 @@ func isPrime(n int) bool{
 
 
 
-func findStartingPowerIndex(n int) int{
+func findPrimeAtIndex(n int) int{
     // Using prime counting function table values
     // Full table available here: https://mathworld.wolfram.com/PrimeCountingFunction.html
    // Each index here corresponds to a count up to 10 of the power of that index
    // 1 - 10, 2 -100, 3 - 1000 etc.
     primeCount := []int{4, 25, 168, 1229, 9592, 78498, 664579}
-    availPrimeCount := 0
-    nCountValue := 0
+    availPrimeCount := 4
+    nCountValue := 10
 
     for idx, num := range primeCount {
         if n < num{
@@ -80,7 +80,7 @@ func findStartingPowerIndex(n int) int{
 func main(){
     maxNumPtr := flag.Int("number", 20, "Integer for the max range")
     flag.Parse()
-    fmt.Println("Prime is ", findStartingPowerIndex(*maxNumPtr))
+    fmt.Println("Prime is ", findPrimeAtIndex(*maxNumPtr))
 }
 
 
