@@ -21,8 +21,8 @@ import (
 func primeCountingFunction(n int64, k int64, p int64) int{
     count := 0
     for k <= n{
-        // A prime is valid is p%k == 1
-        // and note if p%k == 0
+        // A prime is valid if p%k == 1
+        // and not if p%k == 0
         if p % k == 1 {
             count ++
         }
