@@ -6,7 +6,7 @@ package main
 import (
 	"fmt"
 	"math"
-	)
+)
 
 func BinetFormula(n float64) float64 {
 	sqrt5 := math.Sqrt(5)
