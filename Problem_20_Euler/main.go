@@ -1,5 +1,7 @@
 package main
 
+// https://projecteuler.net/problem=20
+
 import (
     "flag"
     "fmt"

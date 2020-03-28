@@ -1,6 +1,8 @@
 package main
 
 
+// https://projecteuler.net/problem=22
+
 import (
     "bufio"
     "fmt"
