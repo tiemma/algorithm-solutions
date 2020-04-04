@@ -11,8 +11,8 @@ func MoveElementToEnd(array []int, toMove int) []int {
 		if(array[lastIdx] == toMove && array[idx] != toMove){
 			array[idx], array[lastIdx] = array[lastIdx], array[idx]
 			lastIdx += 1
-		} else if(idx + 1 < len(array) && array[lastIdx] != toMove && array[idx] != toMove){
-			lastIdx = idx + 1
+		} else if(array[lastIdx] != toMove){
+			lastIdx += 1
 		}
 	}
 	return array
