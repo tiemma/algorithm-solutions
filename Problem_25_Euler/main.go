@@ -12,11 +12,7 @@ import (
     "gonum.org/v1/plot/vg"
 )
 
-<<<<<<< HEAD
 // // https://projecteuler.net/problem=25
-=======
-
->>>>>>> 824725c56150b0a5d9994b1f9f99dc0863490bbf
 
 func getDigitLengthBinet(n int) int {
      // We use a reverse implementation of the Binet formula
