@@ -43,8 +43,8 @@ func factorial(x int) int {
 }
 
 func main(){
-    window := flag.Int("window", 2, "Length of the number to generate to")
-    index := flag.Int("index", 5, "Nth lexicographic permutation to look out for")
+    window := flag.Int("window", 9, "Length of the number to generate to")
+    index := flag.Int("index",1_000_000, "Nth lexicographic permutation to look out for")
     flag.Parse()
 
     arr := []int{}

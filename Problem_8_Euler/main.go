@@ -4,8 +4,11 @@ import (
     "math"
     "fmt"
     "flag"
+    "os"
     "strconv"
 )
+
+// https://projecteuler.net/problem=8
 
 
 func getSliceProduct(elems []string) int{
@@ -40,8 +43,12 @@ func loopAcrossValueSets(elemStr string, window int) int{
 } 
 
 func main(){
-    elems := flag.String("elems", "20", "Integer element to run the product over")
-    window := flag.Int("window", 20, "Integer for the max product window")
+    content, err := os.ReadFile("number.txt")
+    if err != nil {
+        panic(err)
+    }
+    elems := flag.String("elems", string(content), "Integer element to run the product over")
+    window := flag.Int("window", 13, "Integer for the max product window")
     flag.Parse()
     fmt.Println(loopAcrossValueSets(*elems, *window))
 

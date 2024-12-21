@@ -45,7 +45,7 @@ func getTermsCount(maxCount int) int{
 
 
 func main(){
-    maxTerms := flag.Int("max", 10, "Max number of terms obtained from the collatz sequence")
+    maxTerms := flag.Int("max", 1_000_000, "Max number of terms obtained from the collatz sequence")
     flag.Parse()
 
    fmt.Println("Variable with max iterations is ", getTermsCount(*maxTerms))

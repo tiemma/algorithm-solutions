@@ -128,7 +128,7 @@ func convertNumberToWords(number int) string{
 
  
 func main(){
-    number := flag.Int("number", 100, "Max number to sum to")
+    number := flag.Int("number", 1_000, "Max number to sum to")
     flag.Parse()
     
     sum := 0

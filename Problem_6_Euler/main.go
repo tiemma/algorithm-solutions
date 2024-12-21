@@ -18,7 +18,7 @@ func getSquareAPSum(n int) int{
 }
 
 func main() {
-    maxNumPtr := flag.Int("number", 20, "Integer for the max range")
+    maxNumPtr := flag.Int("number", 100, "Integer for the max range")
     flag.Parse()
     fmt.Println(-getSquareAPSum(*maxNumPtr) + getLinearAPSum(*maxNumPtr))
 }

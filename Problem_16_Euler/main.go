@@ -10,8 +10,8 @@ import (
 )
 
 func main() {
-    val := flag.Int64("val", 10, "Number to raise the power to")
-    exp := flag.Int64("exp", 10, "Power of the value")
+    val := flag.Int64("val", 2, "Number to raise the power to")
+    exp := flag.Int64("exp", 1_000, "Power of the value")
     flag.Parse()
     
     result := big.NewInt(0) 

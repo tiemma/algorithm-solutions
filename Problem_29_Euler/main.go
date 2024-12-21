@@ -9,8 +9,8 @@ import (
 )
 
 func main() {
-  a := flag.Int("a", 5, "Window for power combination as value")
-  b := flag.Int("b", 5, "Window for power combination as power")
+  a := flag.Int("a", 100, "Window for power combination as value")
+  b := flag.Int("b", 100, "Window for power combination as power")
 
   flag.Parse()
   mem := map[string]bool{}

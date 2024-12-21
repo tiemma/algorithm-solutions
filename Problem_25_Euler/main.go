@@ -3,13 +3,13 @@ package main
 import (
     "fmt"
     "flag"
-    "image/color"
+    //"image/color"
     "math"
     "math/big"
 
-    "gonum.org/v1/plot"
-    "gonum.org/v1/plot/plotter"
-    "gonum.org/v1/plot/vg"
+    //"gonum.org/v1/plot"
+    //"gonum.org/v1/plot/plotter"
+    //"gonum.org/v1/plot/vg"
 )
 
 // // https://projecteuler.net/problem=25
@@ -29,92 +29,92 @@ func getDigitLengthBinet(n int) int {
     return int(math.Ceil(nDigits))
 }
 
-
-func plotDifference(num float64){
-    p, err := plot.New()
-    if err != nil {
-        panic(err)
-    }
-    p.Title.Text = "Differences"
-    p.X.Label.Text = "X"
-    p.Y.Label.Text = "Y"
-   
-    exp := plotter.NewFunction(func(x float64) float64 {  
-        diff := float64(getFnIndex(int(x)) - getFnIndex(int(x - 1)))
-        return diff 
-    })
-    exp.Dashes = []vg.Length{vg.Points(4), vg.Points(4)}
-    exp.Width = vg.Points(2)
-    exp.Color = color.RGBA{G: 255, A: 255}
-
-       // Add the functions and their legend entries.
-    p.Add(exp)
-    p.Legend.Add("len(F(n)) - len(F(n-1))", exp)
-    p.Legend.ThumbnailWidth = 2 * vg.Inch
-
-    // Set the axis ranges.  Unlike other data sets,
-    // functions don't set the axis ranges automatically
-    // since functions don't necessarily have a
-    // finite range of x and y values.
-    p.X.Min = 0
-    p.X.Max = num
-    p.Y.Min = 0
-    p.Y.Max = 10 
-
-    // Save the plot to a PNG file.
-    if err := p.Save(16*vg.Inch, 16*vg.Inch, fmt.Sprintf("differences-%1f.png", num)); err != nil { 
-        panic(err)
-    }
-}
-
-
-
-func plotFunc(num float64){
-    p, err := plot.New()
-    if err != nil {
-        panic(err)
-    }
-    p.Title.Text = "Functions"
-    p.X.Label.Text = "X(5*k)"
-    p.Y.Label.Text = "Y(k)"
-
-    quad := plotter.NewFunction(func(x float64) float64 { return x / 5 })
-    quad.Color = color.RGBA{B: 255, A: 255}
-
-   
-    exp := plotter.NewFunction(func(x float64) float64 { return float64(getDigitLengthBinet(int(x))) })
-    exp.Dashes = []vg.Length{vg.Points(1), vg.Points(1)}
-    exp.Width = vg.Points(2)
-    exp.Color = color.RGBA{G: 255, A: 255}
-
-   
-        sin := plotter.NewFunction(func(x float64) float64 { return - (x/5) + float64(getDigitLengthBinet(int(x)))  })
-    sin.Dashes = []vg.Length{vg.Points(4), vg.Points(5)}
-    sin.Width = vg.Points(4)
-    sin.Color = color.RGBA{R: 255, A: 255}
-
-     // Add the functions and their legend entries.
-    p.Add(quad, exp, sin)
-    p.Legend.Add("5 * k", quad)
-    p.Legend.Add("getDigitLengthBinet", exp)
-    p.Legend.Add("getDigitLengthBinet - 5 * k", sin)
-    p.Legend.ThumbnailWidth = 2 * vg.Inch
-    p.Legend.Top = true
-
-    // Set the axis ranges.  Unlike other data sets,
-    // functions don't set the axis ranges automatically
-    // since functions don't necessarily have a
-    // finite range of x and y values.
-    p.X.Min = 0
-    p.X.Max = num
-    p.Y.Min = 0
-    p.Y.Max = num * 1 / 4 
-
-    // Save the plot to a PNG file.
-    if err := p.Save(16*vg.Inch, 16*vg.Inch, fmt.Sprintf("functions-%1f.png", num)); err != nil { 
-        panic(err)
-    }
-}
+//
+//func plotDifference(num float64){
+//    p, err := plot.New()
+//    if err != nil {
+//        panic(err)
+//    }
+//    p.Title.Text = "Differences"
+//    p.X.Label.Text = "X"
+//    p.Y.Label.Text = "Y"
+//
+//    exp := plotter.NewFunction(func(x float64) float64 {
+//        diff := float64(getFnIndex(int(x)) - getFnIndex(int(x - 1)))
+//        return diff
+//    })
+//    exp.Dashes = []vg.Length{vg.Points(4), vg.Points(4)}
+//    exp.Width = vg.Points(2)
+//    exp.Color = color.RGBA{G: 255, A: 255}
+//
+//       // Add the functions and their legend entries.
+//    p.Add(exp)
+//    p.Legend.Add("len(F(n)) - len(F(n-1))", exp)
+//    p.Legend.ThumbnailWidth = 2 * vg.Inch
+//
+//    // Set the axis ranges.  Unlike other data sets,
+//    // functions don't set the axis ranges automatically
+//    // since functions don't necessarily have a
+//    // finite range of x and y values.
+//    p.X.Min = 0
+//    p.X.Max = num
+//    p.Y.Min = 0
+//    p.Y.Max = 10
+//
+//    // Save the plot to a PNG file.
+//    if err := p.Save(16*vg.Inch, 16*vg.Inch, fmt.Sprintf("differences-%1f.png", num)); err != nil {
+//        panic(err)
+//    }
+//}
+//
+//
+//
+//func plotFunc(num float64){
+//    p, err := plot.New()
+//    if err != nil {
+//        panic(err)
+//    }
+//    p.Title.Text = "Functions"
+//    p.X.Label.Text = "X(5*k)"
+//    p.Y.Label.Text = "Y(k)"
+//
+//    quad := plotter.NewFunction(func(x float64) float64 { return x / 5 })
+//    quad.Color = color.RGBA{B: 255, A: 255}
+//
+//
+//    exp := plotter.NewFunction(func(x float64) float64 { return float64(getDigitLengthBinet(int(x))) })
+//    exp.Dashes = []vg.Length{vg.Points(1), vg.Points(1)}
+//    exp.Width = vg.Points(2)
+//    exp.Color = color.RGBA{G: 255, A: 255}
+//
+//
+//        sin := plotter.NewFunction(func(x float64) float64 { return - (x/5) + float64(getDigitLengthBinet(int(x)))  })
+//    sin.Dashes = []vg.Length{vg.Points(4), vg.Points(5)}
+//    sin.Width = vg.Points(4)
+//    sin.Color = color.RGBA{R: 255, A: 255}
+//
+//     // Add the functions and their legend entries.
+//    p.Add(quad, exp, sin)
+//    p.Legend.Add("5 * k", quad)
+//    p.Legend.Add("getDigitLengthBinet", exp)
+//    p.Legend.Add("getDigitLengthBinet - 5 * k", sin)
+//    p.Legend.ThumbnailWidth = 2 * vg.Inch
+//    p.Legend.Top = true
+//
+//    // Set the axis ranges.  Unlike other data sets,
+//    // functions don't set the axis ranges automatically
+//    // since functions don't necessarily have a
+//    // finite range of x and y values.
+//    p.X.Min = 0
+//    p.X.Max = num
+//    p.Y.Min = 0
+//    p.Y.Max = num * 1 / 4
+//
+//    // Save the plot to a PNG file.
+//    if err := p.Save(16*vg.Inch, 16*vg.Inch, fmt.Sprintf("functions-%1f.png", num)); err != nil {
+//        panic(err)
+//    }
+//}
 
 
 func getDigitLength(n int) int{
@@ -167,15 +167,16 @@ func getFnIndex(numberOfDigits int) int{
 }
 
 func main(){
-    numberOfDigits := flag.Int("number", 2, "Number of digits to look out for")
+    numberOfDigits := flag.Int("number", 1_000, "Number of digits to look out for")
     plotGraphs := flag.Bool("plot", false, "Boolean to plot graph of deviations")
     flag.Parse()
 
     
-    maxDelta := 5 * *numberOfDigits 
-    if *plotGraphs { 
-        plotFunc(float64(maxDelta))
-        plotDifference(float64(maxDelta))
+    //maxDelta := 5 * *numberOfDigits
+    if *plotGraphs {
+        //pass
+        //plotFunc(float64(maxDelta))
+        //plotDifference(float64(maxDelta))
     }
    
      

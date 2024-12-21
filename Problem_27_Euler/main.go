@@ -25,8 +25,8 @@ func isPrime(n float64, a float64, b float64) bool{
 
 
 func main() {
-    vala := flag.Int("a", 1, "Range of values for a")
-    valb := flag.Int("b", 41, "Range of values for b")
+    vala := flag.Int("a", 1_000, "Range of values for a")
+    valb := flag.Int("b", 1_000, "Range of values for b")
     flag.Parse()
 
     a := - float64(*vala)

@@ -29,7 +29,7 @@ func bottomRight(num int) int {
 }
 
 func main() {
-  grid := flag.Int("grid", 5, "Spiral width along the diagonal")
+  grid := flag.Int("grid", 1_001, "Spiral width along the diagonal")
   flag.Parse()
 
   sum := 1

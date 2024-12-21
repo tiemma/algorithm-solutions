@@ -17,7 +17,7 @@ func factorial(x *big.Int) *big.Int {
 
 
 func main() {
-    grid := flag.Int64("grid", 10, "Window of integers to  return")
+    grid := flag.Int64("grid", 20, "Window of integers to  return")
     flag.Parse() 
  
     ud := factorial(big.NewInt(*grid * 2)) 

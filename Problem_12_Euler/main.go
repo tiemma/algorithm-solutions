@@ -82,7 +82,7 @@ func highestDivisibleTriangularNumber(maxDivisor int) int{
 
 func main(){
     //divisorMap := Maps{15: {3: 1, 5: 1}} 
-    divisor := flag.Int("divisor", 2, "Flag to indicate the number of divisors to look out for")
+    divisor := flag.Int("divisor", 500, "Flag to indicate the number of divisors to look out for")
     flag.Parse()
     //fmt.Println("Number of multiples to ", *divisor, " is ", countMultiples(*divisor, divisorMap))
     fmt.Println("Number of multiples to ", *divisor, " is ", highestDivisibleTriangularNumber(*divisor))

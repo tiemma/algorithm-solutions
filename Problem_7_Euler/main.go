@@ -78,7 +78,7 @@ func findPrimeAtIndex(n int) int{
 }
 
 func main(){
-    maxNumPtr := flag.Int("number", 20, "Integer for the max range")
+    maxNumPtr := flag.Int("number", 10001, "Integer for the max range")
     flag.Parse()
     fmt.Println("Prime is ", findPrimeAtIndex(*maxNumPtr))
 }

@@ -24,7 +24,7 @@ func getMultipleSum(num int) int{
 }
 
 func main(){
-    maxNum := flag.Int("window", 1000, "Limit to check for amicable pairs from 0")
+    maxNum := flag.Int("window", 10_000, "Limit to check for amicable pairs from 0")
     flag.Parse()
 
     usedValues :=map[int]bool{}

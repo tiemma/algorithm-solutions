@@ -34,7 +34,7 @@ func sumOfPrimeToNBF(n int) int{
 }
 
 func main(){
-    maxNumPtr := flag.Int("number", 10, "Integer for the max range")
+    maxNumPtr := flag.Int("number", 2_000_000, "Integer for the max range")
     flag.Parse()
     fmt.Println("Prime sum to n is ", sumOfPrimeToNBF(*maxNumPtr))
 }

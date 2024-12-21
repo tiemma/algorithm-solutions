@@ -82,7 +82,7 @@ func getPythagoreanTripleBruteForce(n float64) [3]float64{
 
 
 func main(){
-    maxNumPtr := flag.Float64("number", 80, "Integer for the max range")
+    maxNumPtr := flag.Float64("number", 1000, "Integer for the max range")
     flag.Parse()
     solution := getPythagoreanTripleBruteForce(*maxNumPtr)
 

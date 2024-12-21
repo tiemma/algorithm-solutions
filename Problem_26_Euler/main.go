@@ -30,11 +30,9 @@ func getRepetend(numer int, denom int) int {
 
 
 func main(){
-    window := flag.Int("window", 2, "Range to find the longest repetend in")
+    window := flag.Int("window", 1_000, "Range to find the longest repetend in")
     flag.Parse()
    
-    fmt.Println(getRepetend(1, *window)) 
-    return
     result, max := 0, 0
     for *window > 1  {
         *window --
