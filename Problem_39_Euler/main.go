@@ -1,15 +1,12 @@
 package main
 
-// https://projecteuler.net/problem=38
+// https://projecteuler.net/problem=39
 
 import (
 	"flag"
 	"fmt"
 	"math"
 )
-
-
-
 
 func main() {
 	window := flag.Float64("window", 1_000, "Window to search for the perimeter values")
@@ -36,12 +33,12 @@ func main() {
 	maxPerimeter, maxCount := math.MinInt64, 0
 	for perimeter := 2; perimeter < int(*window); perimeter++ {
 		count := 0
-		for b := 2; b < perimeter / 2; b++ {
-			if int(math.Pow(float64(b), 2)) % int(perimeter - b) == 0 {
-				k := math.Pow(float64(b), 2) / float64(perimeter - b)
+		for b := 2; b < perimeter/2; b++ {
+			if int(math.Pow(float64(b), 2))%int(perimeter-b) == 0 {
+				k := math.Pow(float64(b), 2) / float64(perimeter-b)
 				bsquared := math.Pow(float64(b), 2)
-				c := 0.5 * (bsquared / k + k)
-				a := 0.5 * (bsquared / k - k)
+				c := 0.5 * (bsquared/k + k)
+				a := 0.5 * (bsquared/k - k)
 				// Fractional results are not needed here
 				if c > math.Floor(c) || a > math.Floor(a) {
 					continue
@@ -62,4 +59,3 @@ func main() {
 	// It doesn't matter anyways as the answer does not require unique entries for the pythagorean triples
 	fmt.Println(maxPerimeter, maxCount)
 }
-
