@@ -6,7 +6,7 @@ import (
 	"math/big"
 )
 
-// https://projecteuler.net/problem=55
+// https://projecteuler.net/problem=57
 
 func main() {
 	window := flag.Int("window", 1_000, "Range to find the longest lychrel number")
