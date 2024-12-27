@@ -104,7 +104,7 @@ func main() {
 
 		fmt.Println(len(primes), *window)
 
-		combinations := getCombinations([]int{}, primes, 2, [][]int{})
+		combinations := getCombinations([]int{}, primes, 5, [][]int{})
 		fmt.Println(len(combinations), *window)
 		fmt.Println("-------------")
 

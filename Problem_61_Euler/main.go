@@ -1,49 +1,34 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"math"
 	"os"
 )
 
-// https://projecteuler.net/problem=51
+// https://projecteuler.net/problem=45
 
-func isPrime(n int) bool {
-	i := 2
-	if n == 0 || n == 1 {
-		return false
-	}
-	for i <= int(math.Sqrt(float64(n))) {
-		if n%i == 0 {
-			return false
-		}
-		i++
-	}
+func getQuadraticRoots(a, b, c float64) (float64, float64) {
+	firstRoot := (-b + math.Sqrt(math.Pow(b, 2)-(4*a*c))) / (2 * a)
+	secondRoot := (-b - math.Sqrt(math.Pow(b, 2)-(4*a*c))) / (2 * a)
 
-	return true
+	return firstRoot, secondRoot
 }
 
-func getValue(digits []int) int {
-	value := 0
-	power := 0
-	for i := 0; i < len(digits); i++ {
-		number := float64(digits[len(digits)-i-1])
-		value += int(math.Pow(10, float64(power)) * number)
-		power += int(math.Floor(math.Log10(number)) + 1)
-	}
-
-	return value
-}
-
-func isPrimePair(a, b int) bool {
-	for _, number := range [][]int{{a, b}, {b, a}} {
-		if !isPrime(getValue(number)) {
-			return false
+func isValidRoot(ft, st float64) bool {
+	for _, roots := range [][]float64{{ft, st}} {
+		for _, root := range roots {
+			if root > 0 && math.Floor(root) == root {
+				return true
+			}
 		}
 	}
 
-	return true
+	return false
+}
+
+func firstAndLastTwo(i int) (int, int) {
+	return i / 100, i % 100
 }
 
 func sum(n []int) int {
@@ -55,70 +40,108 @@ func sum(n []int) int {
 	return result
 }
 
-func getPermutations(arr, rest []int, n int, result [][]int) [][]int {
-	if n == 0 {
-		return [][]int{arr}
-	} else {
-		for i, k := range rest {
-			result = append(result, getPermutations(append([]int{k}, arr...), rest[i+1:], n-1, [][]int{})...)
+func has(haystack []int, needle int) bool {
+	for _, n := range haystack {
+		if n == needle {
+			return true
+		}
+	}
+
+	return false
+}
+
+func filter(s string, haystack []string) []string {
+	result := []string{}
+	for _, hay := range haystack {
+		if hay != s {
+			result = append(result, hay)
 		}
 	}
 
 	return result
 }
 
-func getPermutationsChan(arr, rest []int, n int, wg chan []int) {
-	if n == 0 {
-		wg <- arr
-	} else {
-		for i, k := range rest {
-			getPermutationsChan(append([]int{k}, arr...), rest[i+1:], n-1, wg)
-		}
-	}
-}
-
-func processResult(wg chan []int, i int) {
-	for result := range wg {
-		//fmt.Println(result, i)
-		permutations := getPermutations([]int{}, result, 2, [][]int{})
-		valid := true
-		for _, perm := range permutations {
-			if !isPrimePair(perm[0], perm[1]) {
-				valid = false
-				break
-			}
-		}
-
-		if valid {
-			fmt.Println("------------")
-			fmt.Println(sum(result), result)
-			close(wg)
-
+func backtrack(shapes []string, digits []int, order []string, sets map[string][][]int) {
+	if len(shapes) == 0 {
+		first, _ := firstAndLastTwo(digits[0])
+		_, lastD := firstAndLastTwo(digits[len(digits)-1])
+		if lastD == first {
+			fmt.Println("---------------")
+			fmt.Println(digits, order)
+			fmt.Println(sum(digits))
+			// There is only one solution, so we can exit on the first version
 			os.Exit(0)
+		}
+	} else {
+		for j := 10; j < 100; j++ {
+			for _, shape := range shapes {
+				nums := sets[shape][j]
+				newShapes := filter(shape, shapes)
+				for _, num := range nums {
+					newDigits := append(digits, num)
+					newOrder := append(order, shape)
+					if len(digits) == 0 {
+						backtrack(newShapes, newDigits, newOrder, sets)
+						continue
+					}
+					if has(digits, num) {
+						continue
+					}
+					first, _ := firstAndLastTwo(num)
+					_, lastD := firstAndLastTwo(digits[len(digits)-1])
+					if lastD == first {
+						backtrack(newShapes, newDigits, newOrder, sets)
+					}
+				}
+			}
 		}
 	}
 }
 
 func main() {
-	window := flag.Int("window", 4, "Number of prime factors to find replacements matching")
-	flag.Parse()
+	sets := map[string][][]int{}
+	shapes := []string{"t", "s", "p", "hx", "hp", "o"}
 
-	power := 0
-	var primes []int
-	for power < *window {
-		for i := int(math.Pow(10, float64(power-1))); i < int(math.Pow(10, float64(power))); i++ {
-			if isPrime(i) {
-				primes = append(primes, i)
-			}
-		}
-
-		wg := make(chan []int)
-		for i := 0; i < 1000; i++ {
-			go processResult(wg, i)
-		}
-
-		getPermutationsChan([]int{}, primes, *window, wg)
-
-		power += 1
+	for _, set := range shapes {
+		sets[set] = make([][]int, 100)
 	}
+	for k := 1000; k < 10000; k++ {
+		firstTwo, lastTwo := firstAndLastTwo(k)
+		i := float64(k)
+		if firstTwo < 10 && lastTwo < 10 {
+			continue
+		}
+
+		ft, st := getQuadraticRoots(0.5, 0.5, -i)
+		if isValidRoot(ft, st) {
+			sets["t"][firstTwo] = append(sets["t"][firstTwo], k)
+		}
+
+		fs, ss := getQuadraticRoots(1, 0, -i)
+		if isValidRoot(fs, ss) {
+			sets["s"][firstTwo] = append(sets["s"][firstTwo], k)
+		}
+
+		fp, sp := getQuadraticRoots(1.5, -0.5, -i)
+		if isValidRoot(fp, sp) {
+			sets["p"][firstTwo] = append(sets["p"][firstTwo], k)
+		}
+
+		fh, sh := getQuadraticRoots(2, -1, -i)
+		if isValidRoot(fh, sh) {
+			sets["hx"][firstTwo] = append(sets["hx"][firstTwo], k)
+		}
+
+		fhp, shp := getQuadraticRoots(2.5, -1.5, -i)
+		if isValidRoot(fhp, shp) {
+			sets["hp"][firstTwo] = append(sets["hp"][firstTwo], k)
+		}
+
+		fo, so := getQuadraticRoots(3, -2, -i)
+		if isValidRoot(fo, so) {
+			sets["o"][firstTwo] = append(sets["o"][firstTwo], k)
+		}
+	}
+
+	backtrack(shapes, []int{}, []string{}, sets)
 }
