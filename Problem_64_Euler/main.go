@@ -6,7 +6,7 @@ import (
 	"math"
 )
 
-// https://projecteuler.net/problem=57
+// https://projecteuler.net/problem=64
 
 func gcd(a, b int) int {
 	a = int(math.Abs(float64(a)))
