@@ -1,6 +1,7 @@
 package main
 
-// https://projecteuler.net/problem=19
+// https://projecteuler.net/problem=18
+
 import (
 	"bufio"
 	"flag"
@@ -10,22 +11,19 @@ import (
 	"strings"
 )
 
-
 func DFS(arr [][]int) int {
-    for i := len(arr[len(arr) - 1]) - 2; i >= 0; i-- {
-        for j := 0; j <= i; j++ {
-            fmt.Println(i, j)
-            if arr[i+1][j] > arr[i+1][j+1] {
-                arr[i][j] += arr[i+1][j]
-            } else {
-                arr[i][j] += arr[i+1][j+1]
-            }
-        }
-    }
-    return arr[0][0]
-} 
-
-
+	for i := len(arr[len(arr)-1]) - 2; i >= 0; i-- {
+		for j := 0; j <= i; j++ {
+			fmt.Println(i, j)
+			if arr[i+1][j] > arr[i+1][j+1] {
+				arr[i][j] += arr[i+1][j]
+			} else {
+				arr[i][j] += arr[i+1][j+1]
+			}
+		}
+	}
+	return arr[0][0]
+}
 
 func main() {
 
@@ -50,7 +48,7 @@ func main() {
 		}
 		triangleArr = append(triangleArr, numArr)
 	}
-    fmt.Println(triangleArr)
+	fmt.Println(triangleArr)
 	result := DFS(triangleArr)
 	fmt.Println(result)
 }
