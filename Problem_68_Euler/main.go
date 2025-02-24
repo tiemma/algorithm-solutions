@@ -7,6 +7,8 @@ import (
 	"sort"
 )
 
+// https://projecteuler.net/problem=68
+
 // https://en.wikipedia.org/wiki/Heap%27s_algorithm
 func getPermutations(arr []int) [][]int {
 	var helper func([]int, int)

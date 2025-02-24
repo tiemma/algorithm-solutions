@@ -9,6 +9,8 @@ import (
 	"strings"
 )
 
+// https://projecteuler.net/problem=70
+
 func isPrime(n int) bool {
 	i := 2
 	if n == 0 || n == 1 {

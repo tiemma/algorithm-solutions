@@ -6,6 +6,8 @@ import (
 	"math"
 )
 
+// https://projecteuler.net/problem=69
+
 func isPrime(n int) bool {
 	i := 2
 	if n == 0 || n == 1 {
