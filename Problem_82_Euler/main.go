@@ -65,7 +65,7 @@ func DFS(arr [][]float64) float64 {
 }
 
 func main() {
-	fileName := flag.String("file", "0081_matrix.txt", "File to read integers from")
+	fileName := flag.String("file", "0082_matrix.txt", "File to read integers from")
 	flag.Parse()
 
 	input, err := os.Open(*fileName)
