@@ -13,8 +13,9 @@ import (
 )
 
 func DFS(arr [][]float64) float64 {
+	var queue [][3]float64
 	var newArr [][]float64
-	size := len(arr)
+	size := float64(len(arr))
 	for i := 0; i < len(arr); i++ {
 		var entry []float64
 		for j := 0; j < len(arr[i]); j++ {
@@ -22,42 +23,45 @@ func DFS(arr [][]float64) float64 {
 		}
 		newArr = append(newArr, entry)
 	}
-	newArr[0][0] = arr[0][0]
 
 	for i := 0; i < len(arr); i++ {
-		fmt.Println(arr[i])
+		queue = append(queue, [3]float64{float64(i), float64(0), arr[i][0]})
 	}
 
-	fmt.Println("-----------")
+	globalMin := math.MaxFloat64
+	for len(queue) > 0 {
+		cur := queue[0]
+		queue = queue[1:]
 
-	for i := 0; i <= len(arr)-1; i++ {
-		for j := 0; j <= len(arr[i])-1; j++ {
-			current := newArr[i][j]
+		x, y, val := cur[0], cur[1], cur[2]
+		if x >= size || y >= size || x < 0 {
+			continue
+		}
 
-			if i+1 < size {
-				newY := current + arr[i+1][j]
-				if newArr[i+1][j] > 0 {
-					newY = math.Min(newArr[i+1][j], newY)
-				}
-				newArr[i+1][j] = newY
-			}
+		if newArr[int(x)][int(y)] == 0 || newArr[int(x)][int(y)] > val {
+			newArr[int(x)][int(y)] = val
+		} else {
+			continue
+		}
 
-			if j+1 < size {
-				newX := current + arr[i][j+1]
-				if newArr[i][j+1] > 0 {
-					newX = math.Min(newArr[i][j+1], newX)
-				}
-				newArr[i][j+1] = newX
-			}
+		if y == size-1 {
+			globalMin = math.Min(globalMin, val)
+		}
+
+		if x-1 >= 0 {
+			queue = append(queue, [3]float64{x - 1, y, val + arr[int(x-1)][int(y)]})
+		}
+
+		if x+1 < size {
+			queue = append(queue, [3]float64{x + 1, y, val + arr[int(x+1)][int(y)]})
+		}
+
+		if y+1 < size {
+			queue = append(queue, [3]float64{x, y + 1, val + arr[int(x)][int(y+1)]})
 		}
 	}
 
-	for i := 0; i < size; i++ {
-		fmt.Println(newArr[i])
-	}
-	fmt.Println("-----------")
-
-	return newArr[size-1][size-1]
+	return globalMin
 }
 
 func main() {
