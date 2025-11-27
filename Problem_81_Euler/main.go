@@ -6,22 +6,58 @@ import (
 	"bufio"
 	"flag"
 	"fmt"
+	"math"
 	"os"
 	"strconv"
 	"strings"
 )
 
-func DFS(arr [][]int) int {
-	for i := len(arr[len(arr)-1]) - 2; i >= 0; i-- {
-		for j := 0; j <= i; j++ {
-			if arr[i+1][j] > arr[i+1][j+1] {
-				arr[i][j] += arr[i+1][j]
-			} else {
-				arr[i][j] += arr[i+1][j+1]
+func DFS(arr [][]float64) float64 {
+	var newArr [][]float64
+	size := len(arr)
+	for i := 0; i < len(arr); i++ {
+		var entry []float64
+		for j := 0; j < len(arr[i]); j++ {
+			entry = append(entry, 0)
+		}
+		newArr = append(newArr, entry)
+	}
+	newArr[0][0] = arr[0][0]
+
+	for i := 0; i < len(arr); i++ {
+		fmt.Println(arr[i])
+	}
+
+	fmt.Println("-----------")
+
+	for i := 0; i <= len(arr)-1; i++ {
+		for j := 0; j <= len(arr[i])-1; j++ {
+			current := newArr[i][j]
+
+			if i+1 < size {
+				newY := current + arr[i+1][j]
+				if newArr[i+1][j] > 0 {
+					newY = math.Min(newArr[i+1][j], newY)
+				}
+				newArr[i+1][j] = newY
+			}
+
+			if j+1 < size {
+				newX := current + arr[i][j+1]
+				if newArr[i][j+1] > 0 {
+					newX = math.Min(newArr[i][j+1], newX)
+				}
+				newArr[i][j+1] = newX
 			}
 		}
 	}
-	return arr[0][0]
+
+	for i := 0; i < size; i++ {
+		fmt.Println(newArr[i])
+	}
+	fmt.Println("-----------")
+
+	return newArr[size-1][size-1]
 }
 
 func main() {
@@ -37,12 +73,12 @@ func main() {
 
 	buffer := bufio.NewScanner(input)
 	var stringArr []string
-	var triangleArr [][]int
+	var triangleArr [][]float64
 	for buffer.Scan() {
-		var numArr []int
+		var numArr []float64
 		stringArr = strings.Split(strings.Trim(buffer.Text(), " "), ",")
 		for _, el := range stringArr {
-			val, _ := strconv.Atoi(el)
+			val, _ := strconv.ParseFloat(el, 64)
 			numArr = append(numArr, val)
 		}
 		triangleArr = append(triangleArr, numArr)

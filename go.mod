@@ -1,6 +1,6 @@
 module github.com/tiemma/algorithm-solutions
 
-go 1.20
+go 1.22.0
 
 require gonum.org/v1/plot v0.15.0
 
