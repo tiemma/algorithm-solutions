@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-// https://projecteuler.net/problem=79
+// https://projecteuler.net/problem=80
 
 // Use main.py as golang has precision issues
 func main() {

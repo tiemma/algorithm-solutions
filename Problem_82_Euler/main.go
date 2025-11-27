@@ -1,6 +1,6 @@
 package main
 
-// https://projecteuler.net/problem=18
+// https://projecteuler.net/problem=82
 
 import (
 	"bufio"
