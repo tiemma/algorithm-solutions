@@ -91,7 +91,7 @@ for i in range(-1000, 1001):
         # cos(-x) = cos(x) so the negative case is the same as the positive case
         # In the negative case of the range, we need to use cosh instead of cos
         # cos(x) = (e^ix + e-ix) / 2 where i = sqrt(-1) following euler's formula
-        # cosh(ix) = (e^x + e-x) / 2 once the i powers are squared giving us cos(x)
+        # cosh(ix) = (e^x + e-x) / 2 once the i powers are squared (-1) giving us cos(x)
         # Since the sqrt of n being negative gives i in the expression cos(pi * sqrt(n)), this can be simplified using cosh(x) instead of cos(ix)
         val = cosh(Decimal(abs(i)).sqrt() * pi())
     delta = val - math.floor(val)
