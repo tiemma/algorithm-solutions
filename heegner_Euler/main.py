@@ -76,7 +76,7 @@ def exp(x):
     return +s
 
 def cosh(x):
-   return ( x.exp() + (-x).exp() ) / 2
+   return ( exp(x) + exp(-x) ) / 2
 
 lowestDelta = 1
 answer = 0
@@ -96,7 +96,6 @@ for i in range(-1000, 1001):
         val = cosh(Decimal(abs(i)).sqrt() * pi())
     delta = val - math.floor(val)
     delta  = min(delta, 1-delta)
-    print(i, delta)
 
     if delta == 0:
         continue
@@ -104,6 +103,7 @@ for i in range(-1000, 1001):
     if delta < lowestDelta:
         lowestDelta = min(delta, 1-delta)
         answer = i
+        print(i, lowestDelta)
 
 print("----")
 print(answer, lowestDelta)
